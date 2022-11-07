@@ -1,5 +1,5 @@
-from models.abstracModel import AbstracModel
+from models.abstracModel import AbstractModel
 
 
-class Table(AbstracModel):
+class Table(AbstractModel):
     pass

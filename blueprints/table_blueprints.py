@@ -4,7 +4,7 @@ from flask import request
 from controller.table_controller import TableController
 
 table_blueprints = Blueprint('table_blueprints', __name__)
-table_controller = TableController
+table_controller = TableController()
 
 
 @table_blueprints.route("/table/all", methods=['GET'])

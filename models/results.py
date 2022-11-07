@@ -1,5 +1,5 @@
-from models.abstracModel import AbstracModel
+from models.abstracModel import AbstractModel
 
 
-class Result(AbstracModel):
+class Result(AbstractModel):
     pass

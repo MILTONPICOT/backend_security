@@ -1,8 +1,8 @@
 from abc import ABCMeta
 
 
-class AbstracModel(metaclass=ABCMeta):
+class AbstractModel(metaclass=ABCMeta):
 
-    def __int__(self, data, dict):
-        for key, value in data.items():
+    def __init__(self, data: dict):
+        for key, value in data.items():  # Convertir clave valor en un listado de tuplas
             setattr(self, key, value)

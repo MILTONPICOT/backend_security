@@ -2,11 +2,11 @@ from models.table import Table
 
 
 class TableController:
-    def __int__(self):
+    def __init__(self):
         print("Table controller ready...")
 
     # Get all
-    def index(self):
+    def index(self) -> list:
         """
 
         :return:
@@ -20,7 +20,7 @@ class TableController:
         }
         return [data]
 
-    # Get id
+    # Get one tale by  id
     def Show(self, id_: str) -> dict:
         """
 
@@ -30,8 +30,8 @@ class TableController:
         print("Show by id")
         data = {
             "_id": "id_",
-            "numero_mesa": "8",
-            "cantidad_CC_inscritas": "231"
+            "mesa": "8",
+            "cantidadCC": "231"
         }
         return data
 
@@ -47,7 +47,7 @@ class TableController:
         return table.__dict__
 
     # Update table
-    def Update(self, id_: str, table_:dict) -> dict:
+    def Update(self, id_: str, table_: dict) -> dict:
         """
 
         :param id_:
@@ -67,5 +67,5 @@ class TableController:
         :param id_:
         :return:
         """
-        print("Delete"+ id_)
-        return {"delete" :1}
+        print("Delete" + id_)
+        return {"delete " :1}

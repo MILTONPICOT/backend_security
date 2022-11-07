@@ -4,7 +4,7 @@ from flask import request
 from controller.results_controller import ResultController
 
 result_blueprints = Blueprint('result_blueprints', __name__)
-results_controller = ResultController
+results_controller = ResultController()
 
 
 @result_blueprints.route("/result/all", methods=['GET'])

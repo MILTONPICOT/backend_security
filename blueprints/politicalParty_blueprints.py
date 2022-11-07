@@ -4,7 +4,7 @@ from flask import request
 from controller.politicalParty_controller import PoliticalPartyController
 
 politicalParty_blueprints = Blueprint('politicalParty_blueprints', __name__)
-politicalParty_controller = PoliticalPartyController
+politicalParty_controller = PoliticalPartyController()
 
 
 @politicalParty_blueprints.route("/politicalParty/all", methods=['GET'])

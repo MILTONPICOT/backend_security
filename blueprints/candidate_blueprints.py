@@ -4,7 +4,7 @@ from flask import request
 from controller.candidate_controller import CandidateController
 
 candidate_blueprints = Blueprint('candidate_blueprints', __name__)
-candidate_controller = CandidateController
+candidate_controller = CandidateController()
 
 
 @candidate_blueprints.route("/candidate/all", methods=['GET'])
