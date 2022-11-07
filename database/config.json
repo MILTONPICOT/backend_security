@@ -1,0 +1,7 @@
+
+{
+    "MONGO_URI_SERVER":"mongodb+srv://narbelaezn:J09n2814!@minticvotaciones.4cfeuqe.mongodb.net/?retryWrites=true&w=majority",
+
+    "MONGO_URI_LOCAL": "mongodb://localhost", 
+    "LOCAL_PORT": 27017
+}
