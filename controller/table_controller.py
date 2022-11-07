@@ -1,4 +1,5 @@
 from models.table import Table
+from repositories.table_repository import TableRepository
 
 
 class TableController():
@@ -8,6 +9,7 @@ class TableController():
         Constructor of the class
         """
         print("Table controller ready...")
+        self.table_repository = TableRepository()
 
     # Get all tables
     def index(self) -> list:
@@ -16,13 +18,7 @@ class TableController():
 
         :return: student's List
         """
-        print("Get all")
-        data = {
-            "_id": "abc123",
-            "number_table": "12",
-            "number_cc_registered": "20"
-        }
-        return [data]
+        return self.table_repository.find_all()
 
     # Get Ome table by ID
     def show(self, id_: str) -> dict:
@@ -32,12 +28,7 @@ class TableController():
         :return:
         """
         print("Show by id")
-        data = {
-            "_id": id_,
-            "number_table": "12",
-            "number_cc_registered": "20"
-        }
-        return data
+        return self.table_repository.find_by_id(id_)
 
     # INSERT table
 
@@ -50,7 +41,7 @@ class TableController():
         """
         print("Insert")
         table = Table(table_)
-        return table.__dict__
+        return self.table_repository.save(table)
 
 
     # UPDATE table
@@ -62,10 +53,8 @@ class TableController():
         :return:
         """
         print("Update")
-        data = table_
-        data['_id'] = id_
         table = Table(table_)
-        return table.__dict__
+        return self.table_repository.update(id_, table)
 
     # DELETE table
     def delete(self, id_: str) -> str:
@@ -75,7 +64,7 @@ class TableController():
         :return:
         """
         print("Delete" + id_)
-        return {"delete": 1}
+        return self.table_repository.delete(id_)
 
 
 
