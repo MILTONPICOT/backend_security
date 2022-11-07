@@ -46,7 +46,7 @@ class InterfaceRepository(Generic[T]):
         document = self.get_values_db_ref(document)
         # si el _id no esta, document = None
         if document:
-            document['_id'] = document['id'].__str__()
+            document['_id'] = document['_id'].__str__()
         else:
             # document not found
             document = {}
@@ -62,7 +62,7 @@ class InterfaceRepository(Generic[T]):
             delattr(item, '_id')
             item = item.__dict__
             updated_item = {"$set": item}
-            current_collection.update_one({'id': _id}, updated_item)
+            current_collection.update_one({'_id': _id}, updated_item)
         else:
             # insert
             _id = current_collection.insert_one(item.__dict__)
@@ -113,7 +113,7 @@ class InterfaceRepository(Generic[T]):
                 collection_ref = self.data_base[value.collection]
                 _id = ObjectId(value.id)
                 document_ref = collection_ref.find({'_id': _id})
-                document_ref['id'] = document_ref['id'].__str__()
+                document_ref['_id'] = document_ref['_id'].__str__()
                 document[key] = document_ref
                 document[key] = self.get_values_db_ref(document[key])
             elif isinstance(value, list) and len(value) > 0:
