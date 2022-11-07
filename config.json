@@ -1,0 +1,6 @@
+{
+  "url-backend" : "127.0.0.1",
+  "port" : 8081,
+  "db-connection": "mongodb+srv://mateob:Mateo1014@misionticg10.aslwwzd.mongodb.net/votes_db?retryWrites=true&w=majority",
+  "db-name": "votes_db"
+}
