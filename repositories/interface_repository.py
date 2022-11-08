@@ -9,7 +9,6 @@ from bson import ObjectId, DBRef
 T = TypeVar('T')
 
 
-# todo add date validations and errors hadLing
 class InterfaceRepository(Generic[T]):
 
     def __init__(self):
@@ -82,7 +81,6 @@ class InterfaceRepository(Generic[T]):
         result = current_collection.delete_one({'_id': _id})
         return {"deleted_count": result.deleted_count}
 
-    # Todo check if this could be  replace  by find_all
     def query(self, query: dict) -> list:
         current_collection = self.data_base[self.collection]
         dataset = []
@@ -93,7 +91,6 @@ class InterfaceRepository(Generic[T]):
             dataset.append(document)
         return dataset
 
-    # Todo add to find with conditional
     def query_aggregation(self, query: dict) -> list:
         current_collection = self.data_base[self.collection]
         dataset = []
