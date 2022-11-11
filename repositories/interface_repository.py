@@ -118,19 +118,47 @@ class InterfaceRepository(Generic[T]):
         return document
 
     def get_value_db_ref_from_list(self, list_: list) -> list:
-        pass
+       processed_list = []
+        collection_ref = self.data_base[list_[0]._id.collection]
+        for item in list_:
+            _id = ObjectId(item._id)
+            document_ref = collection_ref.find_one({'id': _id})
+            document_ref['id'] = document_ref['_d'].__str__()
+            processed_list.append(document_ref)
+        return processed_list
 
     def transform_object_ids(self):
-        pass
+        for key in document.keys():
+            value = document.get(key)
+            if isinstance(value, ObjectId):
+                document[key] = document[key].__str__()
+            elif isinstance(value, list) and len(value) > 0:
+                document[key] = self.format_list(value)
+            elif isinstance(value, dict):
+                document[key] = self.transform_object_ids(value)
+        return document
 
     def format_list(self):
-        pass
-
+        processed_list = []
+        for item in list_:
+            if isinstance(item, ObjectId):
+                temp = item.__str__()
+                processed_list.append(temp)
+        if len(processed_list) == 0:
+            processed_list = list_
+        return processed_list
+    
     def transform_refs(self):
-        pass
+        item_dict = item.__dict__
+        for key in item_dict.keys():
+            if item_dict.get(key).__str__().count("object") == 1:
+                object_ = self.object_to_db_ref(getattr(item, key))
+                set(item, key, object_)
+        return item
 
     def object_to_db_ref(self):
-        pass
+       collection_ref = item_ref.__class__.__name__.lower()
+        return DBRef(collection_ref, ObjectId(item_ref._id))
 
 
 
