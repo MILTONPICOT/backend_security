@@ -119,7 +119,7 @@ class InterfaceRepository(Generic[T]):
             if isinstance(value, DBRef):
                 collection_ref = self.data_base[value.collection]
                 _id = ObjectId(value.id)
-                document_ref = collection_ref.find({'_id': _id})
+                document_ref = collection_ref.find_one({'_id': _id})
                 document_ref['_id'] = document_ref['_id'].__str__()
                 document[key] = document_ref
                 document[key] = self.get_values_db_ref(document[key])
@@ -167,7 +167,7 @@ class InterfaceRepository(Generic[T]):
         for key in item_dict.keys():
             if item_dict.get(key).__str__().count("object") == 1:
                 object_ = self.object_to_db_ref(getattr(item, key))
-                set(item, key, object_)
+                setattr(item, key, object_)
         return item
 
     def object_to_db_ref(self, item_ref: T) -> DBRef:

@@ -19,10 +19,16 @@ def get_result_by_id(id_):
     return response, 200
 
 
-@result_blueprints.route("/result/insert", methods=['POST'])
-def insert_result():
-    result = request.get_json()
-    response = results_controller.create(result)
+@result_blueprints.route("/result/candidate/<string:candidate>", methods=['GET'])
+def get_result_by_candidate(candidate_id):
+    response = results_controller.get_by_candidate(candidate_id)
+    return response, 200
+
+
+@result_blueprints.route("/result/insert/candidate/<string:candidate_id>/table/<string:table_id>", methods=['POST'])
+def insert_enrollment(candidate_id, table_id):
+    enrollment = request.get_json()
+    response = results_controller.create(enrollment, candidate_id, table_id)
     return response, 201
 
 

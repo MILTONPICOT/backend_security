@@ -2,7 +2,7 @@ from models.table import Table
 from repositories.table_repository import TableRepository
 
 
-class TableController():
+class TableController:
     # Constructor
     def __init__(self):
         """
@@ -31,7 +31,6 @@ class TableController():
         return self.table_repository.find_by_id(id_)
 
     # INSERT table
-
     def create(self, table_: dict) -> dict:
 
         """
@@ -42,7 +41,6 @@ class TableController():
         print("Insert")
         table = Table(table_)
         return self.table_repository.save(table)
-
 
     # UPDATE table
     def update(self, id_: str, table_: dict) -> dict:
@@ -57,7 +55,7 @@ class TableController():
         return self.table_repository.update(id_, table)
 
     # DELETE table
-    def delete(self, id_: str) -> str:
+    def delete(self, id_: str) -> dict:
         """
 
         :param id_:
@@ -65,6 +63,3 @@ class TableController():
         """
         print("Delete" + id_)
         return self.table_repository.delete(id_)
-
-
-
