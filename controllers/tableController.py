@@ -5,7 +5,7 @@ from repositories.tableRepository import TableRepository
 class TableController():
     def __init__(self):
         print("Table controller ready...")
-        self.table_repository = TableRepository
+        self.table_repository = TableRepository()
 
     def index(self) -> list:
         """

@@ -78,10 +78,10 @@ class InterfaceRepository(Generic[T]):
         document = current_collection.update_one({'_id': _id}, updated_item)
         return {"updated_count": document.matched_count}
 
-    def delete(self, id_:str) -> dict:
+    def delete(self, id_: str) -> dict:
         current_collection = self.data_base[self.collection]
         _id = ObjectId(id_)
-        result = current_collection.delete_one()
+        result = current_collection.delete_one({'_id': _id})
         return {"deleted_count": result.deleted_count}
 
     # TODO check if this could be replace by find_all
@@ -112,7 +112,7 @@ class InterfaceRepository(Generic[T]):
             if isinstance(value, DBRef):
                 collection_ref = self.data_base[value.collection]
                 _id = ObjectId(value.id)
-                document_ref = collection_ref.find({'_id': _id})
+                document_ref = collection_ref.find_one({'_id': _id})
                 document_ref['_id'] = document_ref['_id'].__str__()
                 document[key] = document_ref
                 document[key] = self.get_values_db_ref(document[key])
@@ -159,7 +159,7 @@ class InterfaceRepository(Generic[T]):
         for key in item_dict.keys():
             if item_dict.get(key).__str__().count("object") == 1:
                 object_ = self.object_to_db_ref(getattr(item, key))
-                set(item, key, object_)
+                setattr(item, key, object_)
         return item
 
     def object_to_db_ref(self, item_ref: T) -> DBRef:

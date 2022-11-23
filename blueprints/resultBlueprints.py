@@ -19,22 +19,22 @@ def get_result_by_id(id_):
     return response, 200
 
 
-@result_blueprints.route("/result/insert", methods=['POST'])
-def insert_enrollment():
+@result_blueprints.route("/result/insert/candidate/<string:candidate_id>/table/<string:table_id>", methods=['POST'])
+def insert_result(candidate_id, table_id):
     enrollment = request.get_json()
-    response = result_controller.create(enrollment)
+    response = result_controller.create(enrollment, candidate_id, table_id)
     return response, 201
 
 
 @result_blueprints.route("/result/update/<string:id_>", methods=['PATCH'])
-def update_enrollment(id_):
+def update_result(id_):
     enrollment = request.get_json()
     response = result_controller.update(id_, enrollment)
     return response, 201
 
 
 @result_blueprints.route("/result/delete/<string:id_>", methods=['DELETE'])
-def delete_enrollment(id_):
+def delete_result(id_):
     response = result_controller.delete(id_)
     return response, 204
 
