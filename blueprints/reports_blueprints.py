@@ -21,3 +21,9 @@ def get_result_by_table():
 def get_result_by_candidate():
     response = report_controller.get_result_by_candidate()
     return response, 200
+
+@reports_blueprints.route("/reports/result_by_politicalparty", methods=['GET'])
+def get_result_by_politicalparty():
+    response = report_controller.get_result_by_politicalparty()
+    return response, 200
+
