@@ -37,7 +37,7 @@ class InterfaceRepository(Generic[T]):
             data = json.load(config)  # lee el contenido de un archivo json y lo guarda como un diccionario phyton
         return data
 
-    def find_all(self)->list:
+    def find_all(self) -> list:
         current_collection = self.data_base[self.collection]
         dataset = []
         for document in current_collection.find({}):

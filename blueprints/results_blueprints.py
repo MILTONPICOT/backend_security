@@ -8,7 +8,7 @@ results_controller = ResultController()
 
 
 @result_blueprints.route("/result/all", methods=['GET'])
-def get_all_result():
+def get_all_results():
     response = results_controller.index()
     return response, 200
 
